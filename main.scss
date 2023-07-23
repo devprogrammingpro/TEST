@@ -1,0 +1,788 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+*::selection{
+    color: white;
+    background-color: rgb(0, 104, 148);
+}
+
+body{
+    height: 100vh;
+    overflow: hidden;
+    margin: 0.3rem;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    color: rgb(235, 235, 235);
+    font-family: 'Noto Serif JP', serif;
+
+    .container-main-page{
+        width: 90%;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 3rem;
+
+        border-right: 0.1rem solid rgba(158, 158, 158, 0.4);
+        border-left: 0.1rem solid rgba(158, 158, 158, 0.4);
+        box-shadow: 0 0 2rem rgba(158, 158, 158, 0.4);
+    }
+    .container-main-page::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+body.loading{
+
+    .preloader{
+        width: 100%;
+        height: 110%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgb(19, 19, 19);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        .load-line{
+            width: 8rem;
+            height: 0.5rem;
+            opacity: 0;
+            border-radius: 5rem;
+        }
+
+        .line-1{
+            background-color: rgb(134, 0, 0);
+            animation: load 1s ease infinite 0s;
+        }
+        .line-2{
+            background-color: rgb(0, 89, 148);
+            animation: load 1s ease infinite 0.5s;
+        }
+        .line-3{
+            background-color: rgb(216, 216, 0);
+            animation: load 1s ease infinite 1s;
+        }
+        .line-4{
+            background-color: rgb(0, 128, 75);
+            animation: load 1s ease infinite 1.5s;
+        }
+
+        @keyframes load {
+            0%{
+                transform: rotateZ(0) translate(-100%, 2rem);
+                opacity: 0.2;
+            }
+            50%{
+                transform: rotateZ(180deg) translate(0%, -2rem);
+                opacity: 1;
+            }
+            100%{
+                transform: rotateZ(360deg) translate(100%, 2rem);
+                opacity: 0.2;
+            }
+        }
+    }
+
+}
+
+body.loaded{
+    .preloader{
+        display: none;
+    }
+}
+
+body.active-info{
+    overflow: hidden;
+    #layoff{ 
+        visibility: visible; opacity: 1;
+    }
+    #instructions{ 
+        visibility: visible; opacity: 1;    
+    }
+}
+
+#layoff{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    background-color: rgba(0, 0, 0, 0.589);
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.5s;
+    width: 100%;
+    height: 110%;
+}
+
+#instructions{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0.1rem solid black;
+    z-index: 999;
+    border-radius: 0.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.5s;
+    width: 70%;
+    min-width: 25rem;
+    max-width: 50rem;
+    height: max-content;
+    overflow-y: auto;
+
+    .content-ins{
+        h2{ text-align: center; }
+
+        ul{
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            
+            li{
+                text-align: justify;
+                font-weight: 600;
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    #close-info-btn{
+        cursor: pointer;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+}
+
+
+header{
+    padding: 1rem;
+    border-bottom: 0.1rem solid grey;
+    margin: 0.4rem;
+
+    .page-heading{
+        font-size: 2rem;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .btn-cont{
+        margin-left: auto;
+        display: flex;
+        flex-direction: row-reverse;
+
+        .download-btn{
+            background-color: rgb(0, 162, 255);
+            border-radius: 1rem;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            font-family: 'Noto Serif JP', serif;
+            margin: 0.2rem 0.5rem;
+        }
+        .download-btn:hover, .info:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+
+.resume-container{
+    padding: 0.2rem;
+    color: black;
+    background-color: white;
+    
+    .resume-head{
+        border-bottom: 0.1rem solid grey;
+        display: flex;
+        padding-left: 1rem;
+
+        .intro-section{
+            width: 70%;
+
+            .name{
+                font-size: 1.5rem;
+                font-weight: 800;
+            }
+
+            .post{
+                font-size: 1rem;
+            }
+
+            .about{
+                padding: 0.2rem;
+                font-size: 0.8rem;
+                color: rgb(86, 148, 167);
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        .contact-section{
+            width: 30%;
+
+            .skill-text{
+                font-size: 0.7rem;
+                text-align: right;
+                margin: 0.1rem;
+                color: rgb(37, 37, 37);
+                .skill-link:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        .contact-section.download-active{
+            #user-web-link{
+                display: none;
+            }
+        }
+    }
+
+    .main-resume.download-active{
+        #user-web-link{
+            display: none;
+        }
+        .left-section{    
+
+            .resume-section{
+                .delete-section{
+                    display: none;
+                }
+                .switch-to-table{
+                    display: none;
+                }
+                .section-content{
+                    .education-table{
+                        th:last-child{
+                            display: none;
+                        }
+                        td:last-child{
+                            display: none;
+                        }
+                    }
+                    .content-list{
+                        .content-item{
+                            .brief-cont{
+                                .link-input{
+                                    display: none;
+                                }
+                            }
+                            .delete-info{
+                                display: none;
+                            }
+
+                            .content-item-desc-list{
+                                .content-item-desc-item{
+                                    .delete-info{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                    .add-more{
+                        display: none;
+                    }
+                    .add-more#add-edutab-btn{display: none;}
+                    .add-more#add-edu-btn{display: none;}
+                }
+            }
+        }
+        .right-section{
+            .resume-section{
+                .delete-section{
+                    display: none;
+                }
+                .resume-skill-wrap{
+                    .skill-block{
+                        .delete-info{
+                            display: none;
+                        }
+                    }
+                }
+                .resume-skills-list{
+                    .skill-item{
+                        .delete-info{
+                            display: none;
+                        }
+                    }
+                    .skill-smpro{
+                        .smpro-main{
+                            .smpro-head-link{
+                                .smpro-link{
+                                    .link-input{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .add-more{
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+    .main-resume{
+        display: flex;
+        margin: 0.2rem;
+        .left-section{
+            width: 66%; 
+            border-right: 0.1rem solid grey;
+            padding: 0.2rem;
+            padding-left: 1rem;
+
+            .resume-section.dragging{
+                opacity: 0.5;
+                background-color: rgb(192, 192, 192);
+            }
+
+            .resume-section{
+                position: relative;
+
+                .delete-section{
+                    color: grey;
+                    font-size: 1rem;
+                    position: absolute;
+                    top: 0;
+                    right: 0.2rem;
+                    border: 0.1rem solid grey;
+                    padding: 0.2rem;
+                    border-radius: 0.7rem;
+                    cursor: pointer;
+                }
+
+                .switch-to-table{
+                    position: absolute;
+                    color: grey;
+                    top: 0;
+                    right: 3rem;
+                    font-size: 0.9rem;
+                    border: 0.1rem solid grey;
+                    border-radius: 0.7rem;
+                    padding: 0 0.2rem;
+                }
+
+                .resume-section-head{
+                    color: rgba(0, 115, 168, 0.822);
+                    text-shadow: 0 0.05rem 0.05rem black;
+                    font-weight: 800;
+                    font-size: 1.1rem;
+                }
+
+                .section-content.active-tab{
+                    .education-table{
+                        display: block;
+                    }
+
+                    .content-list{
+                        display: none;
+                    }
+                    
+                    #add-edutab-btn{display: block;}
+                    #add-edu-btn{display: none;}
+                }
+
+                .section-content{
+
+                    #add-edutab-btn{display: none;}
+                    #add-edu-btn{display: block;}
+
+                    .education-table{
+                        display: none;
+                        width: 100%;
+                        margin-right: 0.5rem;
+                        margin-top: 0.5rem;
+                        text-align: center;
+                        font-size: 0.7rem;
+
+                        tr{
+                            th:first-child{
+                                border-left: 0.1rem solid black;
+                            }
+                            td:first-child{
+                                border-left: 0.05rem solid black;
+                            }
+                            th{
+                                border-top: 0.1rem solid black;
+                                border-right: 0.1rem solid black;
+                                border-bottom: 0.1rem solid black;
+                                padding: 0.2rem;
+                            }
+
+                            .tb-name{ width: 25%;}
+                            .tb-degree{ width: 25%; }
+                            .tb-grade{ width: 10%;}
+                            .tb-ach{ width: 25%;}
+                            .tb-year{ width: 10%;}
+                            .tb-del{ width: 5%;}
+
+                            td{
+                                border-right: 0.05rem solid black;
+                                border-bottom: 0.05rem solid black;
+                                padding: 0.2rem;
+
+                                .delete-info{
+                                    color: grey;
+                                }
+                            }
+                        }
+                    }
+
+                    .content-list{
+                        // padding: 0.3rem;
+                        display: block;
+
+                        .content-item::before{
+                                position: absolute;
+                                content: '';
+                                top: 0;
+                                left: 0;
+                                width: 0.5rem;
+                                height: 0.5rem;
+                                background-color: rgb(0, 87, 128);
+                                border-radius: 50%;
+                                transform: translate(-150%, 90%);
+                        }
+
+                        .content-item{
+                            position: relative;
+                            margin: 0.1rem;
+                            list-style: none;
+                            // border-bottom: 0.1rem solid rgba(160, 160, 160, 0.411);
+
+                            .head-link-section{
+                                display: flex;
+                            }
+
+                            .delete-info{
+                                position: absolute;
+                                right: 0.4rem;
+                                font-size: 1rem;
+                                top: 0.4rem;
+                            }
+                            .delete-info:hover{
+                                cursor: pointer;
+                            }
+
+                            .content-item-head{
+                                font-size: 1rem;
+                                font-weight: 600;
+                            }
+
+                            .brief-cont{
+                                display: flex;
+                                margin-left: 0.4rem;
+
+                                .content-item-role{
+                                    color: grey;
+                                    padding: 0 0.3rem;
+                                    font-size: 0.69rem;
+                                    border-right: 0.1rem solid grey;
+                                }
+                                .content-item-duration{
+                                    color: grey;
+                                    font-size: 0.69rem;
+                                    padding-left: 0.3rem;
+                                }
+                                
+                                .content-item-link{
+                                    color: rgb(0, 102, 143);
+                                    text-transform: uppercase;
+                                    border-radius: 0.2rem;
+                                    font-size: 0.9rem;
+                                    padding: 0.1rem;
+                                    text-decoration: none;
+                                    font-weight: 900;
+                                    transition: all 0.2s ease;
+                                }
+                                .content-item-link:hover{
+                                    cursor: pointer;
+                                }
+
+                                .link-input{
+                                    margin-left: 0.3rem;
+                                    width: 5rem;
+                                }
+                            }
+
+                            .content-item-desc-list{
+                                padding: 0.1rem;
+
+                                .content-item-desc-item:not(:last-child){
+                                    border-bottom: 0.1rem solid rgba(156, 156, 156, 0.062);
+                                }
+
+                                .content-item-desc-item{
+                                    padding: 0.1rem;
+                                    padding-left: 0.2rem;
+                                    position: relative;
+                                    list-style-type: none;
+
+                                    .content-desc-text{
+                                        font-size: 0.7rem;
+                                    }
+                                    .delete-info{
+                                        position: absolute;
+                                        right: 0.2rem;
+                                        color: grey;
+                                        top: 50%;
+                                        font-size: 0.8rem;
+                                        border: none;
+                                        transform: translateY(-50%);
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                    .add-more{
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 1rem;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        border: 0.1rem solid black;
+                        background-color: rgb(156, 187, 199);
+                        text-align: center;
+                    }
+                    .add-more:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .right-section{
+            width: 34%;
+            padding: 0.2rem;
+
+            .resume-section{
+                margin: 1rem 0.2rem;
+                position: relative;
+
+                .delete-section{
+                    color: grey;
+                    font-size: 1rem;
+                    position: absolute;
+                    top: 0;
+                    right: 0.2rem;
+                    border: 0.1rem solid grey;
+                    padding: 0.2rem;
+                    border-radius: 0.7rem;
+                    cursor: pointer;
+                }
+
+                .resume-sec-head{
+                    color: rgba(0, 115, 168, 0.822);
+                    text-shadow: 0 0.05rem 0.05rem black;
+                    font-weight: 800;
+                    font-size: 1rem;
+                }
+
+                .resume-skills-list{
+                    margin: 0.3rem;
+                    padding-left: 0.8rem;
+
+                    .skill-item::before{
+                        position: absolute;
+                        content: '';
+                        top: 0;
+                        left: 0;
+                        width: 0.5rem;
+                        height: 0.5rem;
+                        background-color: rgb(0, 87, 128);
+                        border-radius: 50%;
+                        transform: translate(-150%, 90%);
+                    }
+
+                    .skill-item{
+                        position: relative;
+                        list-style: none;
+                        // border-bottom: 0.1rem solid rgba(158, 158, 158, 0.459);
+                        // display: flex;
+                        // flex-wrap: wrap;
+
+                        .skill-head{
+                            font-weight: 600;
+                            margin-right: 0.4rem;
+                            font-size: 0.9rem;
+                        }
+                        .skill-text{
+                            font-size: 0.8rem;
+
+                            .skill-link:hover{
+                                cursor: pointer;
+                            }
+                        }
+                        .delete-info{
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            color: grey;
+                            transform: translateY(-50%);
+                            border: none;
+                        }
+                        .delete-info:hover{
+                            cursor: pointer;
+                        }
+                    }
+
+                    .skill-smpro{
+                        .smpro-main{
+                            .smpro-head-link{
+                                display: flex;
+
+                                .smpro-head{
+                                    font-size: 0.8rem;
+                                    font-weight: 600;
+                                }
+                                .smpro-link{
+                                    margin-left: 0.3rem;
+
+                                    .content-item-link{
+                                        color: rgb(0, 102, 143);
+                                        text-transform: uppercase;
+                                        border-radius: 0.2rem;
+                                        font-size: 0.9rem;
+                                        text-decoration: none;
+                                        font-weight: 900;
+                                        transition: all 0.2s ease;
+                                        display: block;
+                                    }
+                                    .content-item-link:hover{
+                                        cursor: pointer;
+                                    }
+                                    .link-input{
+                                        width: 4rem;
+                                        display: block;
+                                    }
+                                }
+                            }
+                            .smpro-content{
+                                font-size: 0.7rem;
+                            }
+                        }
+                        .delete-info{
+                            position: absolute;
+                            top: 0;
+                            transform: translateY(50%);
+                        }
+                    }
+                }
+
+                .resume-skill-wrap{
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: 0.4rem;
+
+                    .skill-block{
+                        display: flex;
+                        font-size: 0.8rem;
+                        background-color: rgb(0, 101, 160);
+                        color: white;
+                        padding: 0.2rem;
+                        margin: 0.2rem;
+                        border-radius: 0.3rem;
+
+                        // .skill-text{
+                        // }
+                        
+                        .delete-info{
+                            color: rgb(192, 192, 192);
+                            margin: 0.15rem;
+                            font-size: 0.8rem;
+                        }
+
+                        .delete-info:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .add-more{
+                    font-size: 1rem;
+                    border: 0.1rem solid black;
+                    margin: 0.3rem;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    font-weight: 700;
+                    background-color: rgb(156, 187, 199);
+                    border-radius: 10rem;
+                    text-align: center;
+                }
+
+                .add-more:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+footer{
+    border-top: 0.1rem solid grey;
+    margin: 0.4rem;
+
+    .foot-heading{
+        padding: 0.3rem;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .copyright{
+        text-align: center;
+        color: grey;
+        font-size: 0.8rem;
+    }
+
+    .social-med{
+        margin: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .soc-logo{
+            margin: 0.5rem;
+            a{
+                text-decoration: none;
+                font-size: 1.7rem;
+                color: rgb(175, 175, 175);
+                transition: all 0.5s ease;
+            }
+
+            .fa-facebook-square:hover{
+                color: rgb(0, 102, 255);
+            }
+            .fa-github:hover{
+                color: rgb(84, 6, 156);
+                
+            }
+            .fa-instagram:hover{
+                color: rgb(247, 78, 196);
+            }
+            .fa-linkedin-square:hover{
+                color: rgb(106, 180, 250);
+            }
+            .fa-envelope-o:hover{
+                color: rgb(255, 51, 0);
+            }
+        }
+    }
+}
